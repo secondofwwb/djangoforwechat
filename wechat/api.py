@@ -30,7 +30,7 @@ class contentviewset(viewsets.ModelViewSet):
         # 获取传入的参数
         content_num = int(request.query_params['page'])
         page_num = 3 * content_num
-        return Response(serializers.data[:3+page_num])
+        return Response(serializers.data[page_num:3+page_num])
 
     # 获取单一文章
     @detail_route(methods=['get'], url_path='contentbyid')
@@ -46,7 +46,7 @@ class contentviewset(viewsets.ModelViewSet):
         serializer = ContentSerializer(recimfors, many=True, context={'request': request})
         content_num = int(request.query_params['page'])
         page_num = 3 * content_num
-        return Response(serializer.data[:3+page_num])
+        return Response(serializer.data[page_num:3+page_num])
 
 class icons_list_viewset(viewsets.ModelViewSet):
     queryset = icons.objects.all()
