@@ -41,13 +41,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'wechat',
-    'rest_framework'
+    'rest_framework',
+    'rest_framework.authtoken'
 ]
 
-# REST_FRAMEWORK = {
-#     'PAGE_SIZE': 3
-# }
-
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -114,6 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+APPEND_SLASH = False
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/

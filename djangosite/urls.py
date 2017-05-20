@@ -17,6 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from wechat.api import contentviewset, icons_list_viewset
 from rest_framework import routers
+from rest_framework.authtoken import views
 
 # content = reverse_lazy('contentviewset',request=request)
 
@@ -27,5 +28,5 @@ router.register(r'icon', icons_list_viewset)
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),
-    # url(r'^api/icon/', icons_list),
+    url(r'^api/token/', views.obtain_auth_token),
 ]
